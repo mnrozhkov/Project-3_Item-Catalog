@@ -1,0 +1,70 @@
+{# category_public.html #}
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div>
+        <a href="{{url_for('showCatalog')}}" > <h4> Back to Catalog </h4> </a>
+
+        <div>
+            {% with messages = get_flashed_messages()%}
+                {%if messages %}
+                    <ul>
+                    {%for message in messages%}
+                        <li><strong> {{message}} </strong></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+    </div>
+
+
+    <h2>{{category.name}}</h2>
+
+
+    <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+                {% for project in projects %}
+
+                    <!-- Title -->
+                    <a href="{{url_for('showProject', project_id = project.id, category_id = project.category_id)}}">
+                           <h2>{{project.name}}</h2></a>
+                    <hr>
+
+                    <!-- Post Content -->
+                    <p>{{project.abstract}}</p>
+                    <p>{{project.description}}</p>
+{#                    <p>{{project.license}}</p>#}
+                    <p>{{project.website}}</p>
+                    <img class="img-responsive" src={{project.image}} alt="">
+                    <hr>
+                {% endfor %}
+            </div>
+
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h3>How it works?</h3>
+                    <p>Here you can find open source projects in {{category.name}} category.
+                    Read this or share your own project!</p>
+                </div>
+
+                <a href="{{url_for('newProject', category_id = category.id)}}" >
+                    <button class="btn btn-default" id="new-category">
+                            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add New Project
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+{% endblock %}

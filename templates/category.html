@@ -1,0 +1,216 @@
+{# category.html #}
+{% extends "layout.html" %}
+
+{% block content %}
+
+        <div>
+            <a href="{{url_for('showCatalog')}}" > <h4> Back to Catalog </h4> </a>
+
+            <div>
+                {% with messages = get_flashed_messages()%}
+                    {%if messages %}
+                        <ul>
+                        {%for message in messages%}
+                            <li><strong> {{message}} </strong></li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+        </div>
+
+        <h1>{{category.name}}</h1>
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+                {% for project in projects %}
+                    <!-- Blog Post -->
+
+                    <!-- Title -->
+                    <a href="{{url_for('showProject', project_id = project.id, category_id = project.category_id)}}">
+                           <h2>{{project.name}}</h2></a>
+
+                    <!-- Author -->
+{#                    <p class="lead">#}
+{#                        by Author {{project.user_id}}#}
+{#                    </p>#}
+{##}
+{#                    <hr>#}
+{##}
+{#                    <!-- Date/Time -->#}
+{#                    <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>#}
+{##}
+{#                    <hr>#}
+{##}
+{#                    <!-- Preview Image -->#}
+{#                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">#}
+
+                    <hr>
+
+                    <!-- Post Content -->
+                    <p>{{project.abstract}}</p>
+                    <p>{{project.description}}</p>
+                    <p>{{project.license}}</p>
+                    <p>{{project.website}}</p>
+                    <img src={{project.image}} alt="">
+                    <hr>
+
+    {#                <!-- Blog Comments -->#}
+    {##}
+    {#                <!-- Comments Form -->#}
+    {#                <div class="well">#}
+    {#                    <h4>Leave a Comment:</h4>#}
+    {#                    <form role="form">#}
+    {#                        <div class="form-group">#}
+    {#                            <textarea class="form-control" rows="3"></textarea>#}
+    {#                        </div>#}
+    {#                        <button type="submit" class="btn btn-primary">Submit</button>#}
+    {#                    </form>#}
+    {#                </div>#}
+    {##}
+    {#                <hr>#}
+
+    {#                <!-- Posted Comments -->#}
+    {##}
+    {#                <!-- Comment -->#}
+    {#                <div class="media">#}
+    {#                    <a class="pull-left" href="#">#}
+    {#                        <img class="media-object" src="http://placehold.it/64x64" alt="">#}
+    {#                    </a>#}
+    {#                    <div class="media-body">#}
+    {#                        <h4 class="media-heading">Start Bootstrap#}
+    {#                            <small>August 25, 2014 at 9:30 PM</small>#}
+    {#                        </h4>#}
+    {#                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {#                <!-- Comment -->#}
+    {#                <div class="media">#}
+    {#                    <a class="pull-left" href="#">#}
+    {#                        <img class="media-object" src="http://placehold.it/64x64" alt="">#}
+    {#                    </a>#}
+    {#                    <div class="media-body">#}
+    {#                        <h4 class="media-heading">Start Bootstrap#}
+    {#                            <small>August 25, 2014 at 9:30 PM</small>#}
+    {#                        </h4>#}
+    {#                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.#}
+    {#                        <!-- Nested Comment -->#}
+    {#                        <div class="media">#}
+    {#                            <a class="pull-left" href="#">#}
+    {#                                <img class="media-object" src="http://placehold.it/64x64" alt="">#}
+    {#                            </a>#}
+    {#                            <div class="media-body">#}
+    {#                                <h4 class="media-heading">Nested Start Bootstrap#}
+    {#                                    <small>August 25, 2014 at 9:30 PM</small>#}
+    {#                                </h4>#}
+    {#                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <!-- End Nested Comment -->#}
+    {#                    </div>#}
+    {#                </div>#}
+                {% endfor %}
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+
+{#                <!-- Blog Search Well -->#}
+{#                <div class="well">#}
+{#                    <h4>Blog Search</h4>#}
+{#                    <div class="input-group">#}
+{#                        <input type="text" class="form-control">#}
+{#                        <span class="input-group-btn">#}
+{#                            <button class="btn btn-default" type="button">#}
+{#                                <span class="glyphicon glyphicon-search"></span>#}
+{#                        </button>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                    <!-- /.input-group -->#}
+{#                </div>#}
+
+                <!-- Blog Categories Well -->
+{#                <div class="well">#}
+{#                    <h4>Projects in Categories</h4>#}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-6">#}
+{#                            <ul class="list-unstyled">#}
+{#                               {% for category in categories %}#}
+{#                                    <h3>{{category.name}}</h3>#}
+{#                               {% endfor %}#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <!-- /.row -->#}
+{#                </div>#}
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h3>How it works?</h3>
+                    <p>Here you can find open source projects in {{category.name}} category.
+                    Read this or share your own project!</p>
+                </div>
+
+
+                <div class="col-md-2">
+                <a href="{{url_for('newProject', category_id = category.id)}}" >
+                    <button class="btn btn-default" id="new-category">
+                        <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add New Project
+                    </button>
+                </a>
+                </div></br></br></br>
+
+                <div class="col-md-2">
+                <a href="{{url_for('editCategory', category_id = category.id)}}" >
+                    <button class="btn btn-default" id="new-category">
+                        <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Edit Category
+                    </button>
+                </a>
+                </div></br></br></br>
+
+                <div class="col-md-2">
+                    <a href="{{url_for('deleteCategory', category_id = category.id)}}" >
+                    <button class="btn btn-default" id="new-category">
+                        <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Delete Category
+                    </button>
+                </a>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+{% endblock %}
+
+
+
+{#            <div>#}
+{#                <a href="{{url_for('editCategory', category_id = category.id)}}" > <h3> Edit Category </h3> </a>#}
+{#                    {% with messages = get_flashed_messages()%}#}
+{#                        {%if messages %}#}
+{#                            <ul>#}
+{#                                            {%for message in messages%}#}
+{#                                            <li><strong> {{message}} </strong></li>#}
+{#                                            {% endfor %}#}
+{#                                        </ul>#}
+{#                        {% endif %}#}
+{#                    {% endwith %}#}
+{#                </div>#}
+{##}
+{#            <div>#}
+{#                <a href="{{url_for('deleteCategory', category_id = category.id)}}" > <h3> Delete Category </h3> </a>#}
+{#                {% with messages = get_flashed_messages()%}#}
+{#                    {%if messages %}#}
+{#                        <ul>#}
+{#                                            {%for message in messages%}#}
+{#                                            <li><strong> {{message}} </strong></li>#}
+{#                                            {% endfor %}#}
+{#                                        </ul>#}
+{#                    {% endif %}#}
+{#                {% endwith %}#}
+{#            </div>#}

@@ -1,0 +1,79 @@
+{# catalog_public.html #}
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<!-- Header -->
+	<div>
+		{% include "header.html" %}
+	</div>
+	<!-- /.Header -->
+
+
+
+	<!-- Title -->
+		<!-- row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Categories of projects</h2>
+				<a href="{{url_for('newCategory')}}">
+					<button class="btn btn-default" id="new-category">
+						<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add Category
+					</button>
+				</a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+	<!-- Page Features -->
+        <div class="row text-center">
+			<div>
+					{% for category in categories %}
+
+						<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="thumbnail">
+								<img src={{category.image}} alt="">
+								<div class="caption">
+									<a href="{{url_for('showCategory', category_id = category.id)}}">
+										<h4>{{category.name}}</h4>
+									</a>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+					</br></br>
+			</div>
+        </div>
+        <!-- /.row -->
+
+
+
+		<div class="row">
+				<div class="col-lg-12">
+					<h2>Last added Projects</h2>
+				</div>
+		</div>
+        <!-- Page Features -->
+		<div class="row text-center">
+
+					{% for project in projects %}
+
+						<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="thumbnail">
+								<img src={{project.image}} alt="">
+								<div class="caption">
+									<a href="{{url_for('showProject', category_id = project.category_id, project_id = project.id)}}">
+										<h4>{{project.name}}</h4>
+									</a>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+					</br></br>
+
+        </div>
+        <!-- /.row -->
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{# project.html #}
+{% extends "layout.html" %}
+
+{% block content %}
+        <div>
+            <a href="{{url_for('showCatalog')}}" > <h4> Back to Catalog </h4> </a>
+            </br>
+            </br>
+        </div>
+
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                    <!-- Title -->
+                <a href="{{url_for('showProject', project_id = project.id, category_id = project.category_id)}}">
+                    <h2>{{project.name}}</h2></a>
+
+
+                    <a href="{{url_for('showCategory', category_id = category.id)}}">
+                         <h4> Project category: {{category.name}}</h4>
+                    </a>
+                </h4>
+
+                <hr>
+                <!-- Post Content -->
+                <p>{{project.abstract}}</p>
+                <p>{{project.description}}</p>
+                <img src={{project.image}} alt="">
+{#              <p>{{project.license}}</p>#}
+                <p>{{project.website}}</p>
+                <hr>
+
+            </div>
+
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h3>Find out more!</h3>
+                    <p>Find out more open source projects in
+                        <a href="{{url_for('showCategory', category_id = category.id)}}">
+                            {{category.name}}
+                        </a>
+                        category. Or share your own project!</p>
+                </div>
+
+                <a href="{{url_for('newProject', category_id = category.id)}}" >
+                    <button class="btn btn-default" id="new-category">
+                            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add New Project
+                    </button>
+                </a>
+                <p><a href = "{{url_for('editProject', project_id = project.id, category_id = project.category_id)}}">Edit Project</a></p>
+                <p> <a href = "{{url_for('deleteProject', project_id = project.id, category_id = project.category_id)}}">Delete Project</a> </p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+
+{% endblock %}

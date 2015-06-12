@@ -1,0 +1,35 @@
+<html>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+	<body>
+		<h1> Edit Project: {{project.name}} </h1>
+		<form action="{{url_for('editProject', project_id = project.id, category_id = project.category_id)}}" method = 'post'>
+			<p>Name:</p>
+				<input type ='text' size='30' name='name' placeholder = '{{project.name}}'>
+			<p>Abstract:</p>
+				<input type ='text' size='250' name='abstract' placeholder = '{{project.abstract}}'>
+			<p>Description:</p>
+				<input type ='text' size='1000' name='description' placeholder = '{{project.description}}'>
+			<p>License:</p>
+				<input type ='text' size='30' name='license' placeholder = '{{project.license}}'>
+			<p>Website:</p>
+				<input type ='text' size='80' name='website' placeholder = '{{project.website}}'>
+			<p>Image URL:</p>
+				<input type ='url' size='1000' name='image' placeholder = '{{project.image}}'>
+
+			</br>
+			{% if project.category == 'Hardware' %}
+				<dd><input type ='radio' name='category' value='Hardware' checked>Hardware</dd>
+			{%else%}
+				<dd><input type ='radio' name='category' value='Hardware'>Hardware</dd>
+			{% endif %}
+		<input type='submit' value='Edit'>
+		<a href = "{{url_for('showProject', project_id = project.id, category_id = project.category_id)}}"> Cancel </a>
+		</form>
+	</body>
+
+</html>
+
